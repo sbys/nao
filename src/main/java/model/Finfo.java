@@ -1,5 +1,23 @@
 package model;
 
+/*
+* double值意义 五个
+* 温度
+* 湿度
+* 烟雾传感器值
+* 火焰传感器值
+* 光敏电阻值
+*
+*
+* bool值意义
+* 灯1
+* 灯2
+* 灯3
+* 插座1
+* 插座2
+* 窗帘1
+* 门禁状态
+* m 自动或者手动控制 false 自动控制 true 手动控制*/
 public class Finfo {
     private Integer fid;
 

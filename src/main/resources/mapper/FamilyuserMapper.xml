@@ -31,4 +31,7 @@
   <select id="select" parameterType="model.Familyuser" resultType="model.Familyuser">
     select * from FamilyUser where   username=#{username,jdbcType=VARCHAR}
   </select>
+  <delete id="delete" parameterType="model.Familyuser">
+    DELETE from FamilyUser where username=#{username,jdbcType=VARCHAR}
+  </delete>
 </mapper>

@@ -10,4 +10,5 @@ public interface FinfoMapper {
     int insertSelective(Finfo record);
     Finfo select(Finfo record);
     int update(Finfo record);
+    int update2(Finfo record);
 }

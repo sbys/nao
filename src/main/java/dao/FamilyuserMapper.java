@@ -10,4 +10,5 @@ public interface FamilyuserMapper {
 
     int insertSelective(Familyuser record);
     Familyuser select(Familyuser record);
+    int delete(Familyuser familyuser);
 }

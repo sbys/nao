@@ -88,6 +88,25 @@ public class UserService {
         }
         return output;
     }
+//    自动手动控制
+    public Output control(Integer fid,boolean b){
+        Output output=new Output();
+        output.setCode(201);
+        Finfo finfo=new Finfo();
+        finfo.setFid(fid);
+        finfo.setM(b);
+        Finfo tem=new Finfo();
+        tem.setFid(fid);
+        if(allDao.getFinfoMapper().select(tem)!=null){
+            if(allDao.getFinfoMapper().update2(finfo)==1)
+                output.setCode(200);
+        }
+        else{
+            if(allDao.getFinfoMapper().insert(finfo)==1)
+                output.setCode(200);
+        }
+        return output;
+    }
 //    获取family列表
     public Output<List<Family>> getFamily(){
         Output<List<Family>> output=new Output<>();
@@ -135,8 +154,26 @@ public class UserService {
         }
         return output;
     }
+//    解除和family关系
+    public Output rfu(String name,Integer fid){
+        Familyuser familyuser=new Familyuser();
+        familyuser.setFid(fid);
+        familyuser.setUsername(name);
+        Output output=new Output();
+        familyuser=allDao.getFamilyuserMapper().select(familyuser);
+        if (familyuser.getFid()==fid&&allDao.getFamilyuserMapper().delete(familyuser)>0){
+            output.setCode(200);
+            output.setResult("成功解除关系");
+        }
+        else{
+            output.setCode(300);
+            output.setResult("操作失败");
+        }
+        return  output;
+    }
 //    修改密码
     public Output resetPass(String opass,String npass){
+
 
 //        暂时没写
         Output output=new Output();

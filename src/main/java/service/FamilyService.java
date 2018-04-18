@@ -1,5 +1,6 @@
 package service;
 
+import com.sun.org.apache.bcel.internal.generic.FCONST;
 import dao.AllDao;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,35 @@ public class FamilyService {
 //    更新家中数据
     public Output update(Finfo finfo){
         int i;
-        if(allDao.getFinfoMapper().select(finfo)!=null){
-            i=allDao.getFinfoMapper().update(finfo);
+        Finfo tem=null;
+        if((tem=allDao.getFinfoMapper().select(finfo))!=null){
+            if(tem.getM()) {
+//                手动控制，即app控制
+                i = allDao.getFinfoMapper().update(finfo);
+            }
+            else
+            {
+                Fcommond fcommond=new Fcommond();
+                fcommond.setFid(finfo.getFid());
+//                自动控制
+                if(finfo.getA()<350&&finfo.getB()>800){
+                    fcommond.setFlag(70);
+                }
+                else if(finfo.getA()<350&&finfo.getB()<300){
+                    fcommond.setFlag(71);
+                }
+                else if(finfo.getA()<350&&finfo.getB()>800){
+                    fcommond.setFlag(72);
+                }
+                else if(finfo.getA()>350&&finfo.getB()<300){
+                    fcommond.setFlag(73);
+                }
+                else{
+
+                }
+                i=allDao.getFinfoMapper().update(finfo);
+
+            }
         }
         else
         {

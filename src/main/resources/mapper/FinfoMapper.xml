@@ -192,10 +192,20 @@
         <if test="l != null" >
           l=#{l,jdbcType=BIT},
         </if>
-        <if test="m != null" >
-          m=#{m,jdbcType=BIT}
-        </if>
+        <!--<if test="m != null" >-->
+          <!--m=#{m,jdbcType=BIT}-->
+        <!--</if>-->
       </set>
+    where fid=#{fid,jdbcType=INTEGER}
+  </update>
+  <update id="update2" parameterType="model.Finfo">
+    update Finfo
+    <set>
+
+      <if test="m != null" >
+      m=#{m,jdbcType=BIT}
+      </if>
+    </set>
     where fid=#{fid,jdbcType=INTEGER}
   </update>
 </mapper>

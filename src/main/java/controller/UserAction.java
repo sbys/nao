@@ -44,6 +44,12 @@ public class UserAction extends BaseAction {
     public Output commond(@RequestParam(value = "cid")Integer cid,@RequestParam(value = "fid")Integer fid){
         return getAllService().getUserService().conmmond(fid,cid);
     }
+//    自动控制/手动控制
+    @RequestMapping(value = "/control")
+    @ResponseBody
+    public Output control(@RequestParam("fid")Integer fid,@RequestParam("control")Boolean b){
+        return getAllService().getUserService().control(fid,b);
+    }
 //    获取family列表
     @RequestMapping(value="/getFamily")
     @ResponseBody
@@ -61,6 +67,12 @@ public class UserAction extends BaseAction {
     @ResponseBody
     public Output fu(@RequestParam(value = "fid")Integer fid,@RequestParam(value = "uid")String name){
         return getAllService().getUserService().uf(name,fid);
+    }
+//    解除family关系
+    @RequestMapping(value="/release")
+    @ResponseBody
+    public Output release(@RequestParam("fid")Integer fid,@RequestParam("uid")String name){
+        return getAllService().getUserService().rfu(name,fid);
     }
 //    修改密码
     @RequestMapping(value = "/resetpass")
